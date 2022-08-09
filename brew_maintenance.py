@@ -8,9 +8,10 @@ import time
 brew_command = '/usr/local/bin/brew'
 
 subprocess.run([brew_command, 'update'])
-outdated_result = subprocess.run([brew_command, 'outdated'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+outdated_result = subprocess.run([brew_command, 'outdated'], stdout=subprocess.PIPE, text=True)
 if outdated_result.stdout:
     subprocess.run([brew_command, 'upgrade'])
+    subprocess.run([brew_command, 'cleanup'])
 
 current_date = dt.now()
 current_localtime = time.localtime()
