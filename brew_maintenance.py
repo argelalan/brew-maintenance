@@ -3,6 +3,7 @@
 import subprocess
 from datetime import datetime as dt
 import time
+import os
 
 
 brew_command = '/usr/local/bin/brew'
@@ -19,5 +20,6 @@ current_localtime = time.localtime()
 current_time = time.strftime('%H:%M:%S', current_localtime)
 log_message = f'Updated {current_date} - {current_time}\n'
 
-with open('log.txt', 'a') as log_file:
+log_file_path = os.environ['BREW_MAINTENANCE_LOG_FILE_PATH']
+with open(log_file_path, 'a') as log_file:
     log_file.write(log_message)
